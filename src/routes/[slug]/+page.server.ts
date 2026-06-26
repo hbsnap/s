@@ -1,26 +1,15 @@
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad, EntryGenerator } from './$types';
+import { getAllLinks } from '$lib/links';
 
-const linkEnvVars = () => {
-	const vars: { slug: string; destination: string }[] = [];
-	for (const [key, value] of Object.entries(process.env)) {
-		if (key.startsWith('link_') && key !== 'link_default' && value) {
-			const idx = value.indexOf('|');
-			if (idx === -1) continue;
-			const slug = value.slice(0, idx);
-			const destination = value.slice(idx + 1);
-			if (slug && destination) vars.push({ slug, destination });
-		}
-	}
-	return vars;
-};
+const linkVars = () => getAllLinks().filter((l) => l.slug !== '/');
 
 export const entries: EntryGenerator = () => {
-	return linkEnvVars().map((v) => ({ slug: v.slug }));
+	return linkVars().map((v) => ({ slug: v.slug.slice(1, -1) }));
 };
 
 export const load: PageServerLoad = ({ params }) => {
-	const entry = linkEnvVars().find((v) => v.slug === params.slug);
+	const entry = linkVars().find((v) => v.slug === `/${params.slug}/`);
 	if (!entry) {
 		error(404, `link "${params.slug}" is not configured`);
 	}
