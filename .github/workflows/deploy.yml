@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [master]
 
 jobs:
   build-and-deploy:
@@ -18,8 +18,6 @@ jobs:
       - run: npm run build
         env:
           link_default: ${{ secrets.link_default }}
-          link_subscribe: ${{ secrets.link_subscribe }}
-          link_help: ${{ secrets.link_help }}
           link_whatsapp: ${{ secrets.link_whatsapp }}
           # Add new links below — format: slug|destination
       - uses: peaceiris/actions-gh-pages@v3
