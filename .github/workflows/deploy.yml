@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm ci
+      - run: npm install
       - name: Export build env vars
         run: echo "$BUILD_ENV" >> $GITHUB_ENV
         env:
