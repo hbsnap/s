@@ -15,11 +15,11 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
-      - run: npm run build
+      - name: Export build env vars
+        run: echo "$BUILD_ENV" >> $GITHUB_ENV
         env:
-          link_default: ${{ secrets.link_default }}
-          link_whatsapp: ${{ secrets.link_whatsapp }}
-          # Add new links below — format: slug|destination
+          BUILD_ENV: ${{ secrets.BUILD_ENV }}
+      - run: npm run build
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
