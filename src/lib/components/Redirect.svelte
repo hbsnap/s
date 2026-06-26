@@ -2,11 +2,11 @@
 	let { destination }: { destination: string } = $props();
 
 	$effect(() => {
-		const query = window.location.search;
-		if (query) {
-			const sep = destination.includes('?') ? '&' : '?';
-			window.location.replace(`${destination}${sep}${query.slice(1)}`);
+		const url = new URL(destination, window.location.href);
+		if (window.location.search) {
+			url.search = window.location.search;
 		}
+		window.location.replace(url.toString());
 	});
 </script>
 
