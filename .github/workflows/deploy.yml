@@ -18,7 +18,7 @@ jobs:
       - name: Export build env vars
         run: echo "$BUILD_ENV" >> $GITHUB_ENV
         env:
-          BUILD_ENV: ${{ secrets.BUILD_ENV }}
+          BUILD_ENV: ${{ vars.BUILD_ENV }}
       - run: npm run build
       - uses: peaceiris/actions-gh-pages@v3
         with:
