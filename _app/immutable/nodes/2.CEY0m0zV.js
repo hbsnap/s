@@ -1,1 +1,0 @@
-import{J as e,Y as t}from"../chunks/B_v1BLXm.js";import"../chunks/xihTtKlq.js";import{t as n}from"../chunks/GDA64eq0.js";function r(r,i){t(i,!0),n(r,{get destination(){return i.data.destination}}),e()}export{r as component};
