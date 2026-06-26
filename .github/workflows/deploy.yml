@@ -19,7 +19,7 @@ jobs:
         run: echo "$BUILD_ENV" >> $GITHUB_ENV
         env:
           BUILD_ENV: ${{ vars.BUILD_ENV }}
-      - run: npm run build
+      - run: BASE_PATH='/s' npm run build
       - run: cp build/404/index.html build/404.html
       - uses: peaceiris/actions-gh-pages@v3
         with:

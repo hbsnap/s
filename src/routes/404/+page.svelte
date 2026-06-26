@@ -1,10 +1,12 @@
 <script lang="ts">
 	import GlitchBackground from "$lib/components/GlitchBackground.svelte";
+	import { resolve } from '$app/paths';
+
 </script>
 
 <GlitchBackground>
 	<div class="content-wrapper">
-		<a href="/">
+		<a href={resolve("/")}>
 			<div class="content">
 				<h1 class="error-code">404</h1>
 				<p class="title">SINAL PERDIDO</p>
