@@ -2,18 +2,31 @@
 	let { destination }: { destination: string } = $props();
 
 	$effect(() => {
-		const url = new URL(destination, window.location.href);
-		if (window.location.search) {
-			url.search = window.location.search;
-		}
-		window.location.replace(url.toString());
+		window.location.replace(destination);
 	});
 </script>
 
 <svelte:head>
-	<meta http-equiv="refresh" content="0; url={destination}">
+	<meta http-equiv="refresh" content="0; url={destination}" />
 </svelte:head>
 
-<p>
-	<a href={destination}>Click here</a> if you are not redirected automatically.
-</p>
+<main>
+	<div>
+		<h1>Redirecionando</h1>
+		<p>
+			<a href={destination}>Clique aqui</a> se você não for redirecionado automaticamente.
+		</p>
+	</div>
+</main>
+
+<style>
+	main {
+		font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+			sans-serif;
+		text-align: center;
+		display: grid;
+		position: fixed;
+		inset: 0;
+		place-items: center;
+	}
+</style>

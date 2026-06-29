@@ -1,3 +1,10 @@
+export function withQuery(url: URL, dest: string): string {
+	if (!url.search) return dest;
+	const u = new URL(dest);
+	u.search = url.search;
+	return u.toString();
+}
+
 export function getAllLinks(): { slug: string; destination: string }[] {
 	const links: { slug: string; destination: string }[] = [];
 	const def = process.env['link_default'];
@@ -13,3 +20,5 @@ export function getAllLinks(): { slug: string; destination: string }[] {
 	}
 	return links;
 }
+
+console.log(getAllLinks())
